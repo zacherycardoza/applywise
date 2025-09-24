@@ -12,7 +12,7 @@
             strengths, weaknesses, and a tailored resume rewrite in seconds.
         </p>
         <div class="flex justify-center gap-4">
-            <a href="#"
+            <a href="{{ route('register.view') }}"
                class="px-6 py-3 bg-yellow-400 text-gray-900 rounded-xl font-semibold hover:bg-yellow-300">
                Get Started Free
             </a>
@@ -59,7 +59,7 @@
                     <li>✔ Basic Match Score</li>
                     <li>✘ No AI Rewrite</li>
                 </ul>
-                <a href="#"
+                <a href="{{ route('register.view') }}"
                    class="block px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-500">
                    Start Free
                 </a>
@@ -76,7 +76,7 @@
                     <li>✔ Cover Letter Generator</li>
                     <li>✔ Priority Support</li>
                 </ul>
-                <a href="#"
+                <a href="{{ route('register.view') }}"
                    class="block px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-500">
                    Go Pro
                 </a>
@@ -93,7 +93,7 @@
                     <li>✔ White-label Reports</li>
                     <li>✔ Dedicated Support</li>
                 </ul>
-                <a href="#"
+                <a href="{{ route('register.view') }}"
                    class="block px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-500">
                    Contact Sales
                 </a>
