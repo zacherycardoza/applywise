@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Scan::class);
     }
+
+    public function resumes()
+    {
+        return $this->hasMany(\App\Models\Resume::class);
+    }
 }
