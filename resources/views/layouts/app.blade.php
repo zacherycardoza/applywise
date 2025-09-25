@@ -44,38 +44,46 @@
     </script>
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    @if (request()->routeIs('landing'))
     <header class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
     <!-- Logo / Site Name -->
-    <a href="/" class="text-2xl font-bold">{{ config('app.name', 'MatchHire') }}</a>
 
-    <!-- Navigation / Auth Buttons -->
-    <div class="flex items-center gap-4">
-        @guest
-            <a href="#"
-               class="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-700 font-semibold">
-               Login
-            </a>
-            <a href="{{ route('register.view') }}"
-               class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 font-semibold">
-               Register
-            </a>
-        @else
-            <span class="text-gray-700 dark:text-gray-300">Hello, {{ Auth::user()->name }}</span>
-            <form method="POST" action="#">
-                @csrf
-                <a href="{{ route('logout') }}"
-                        class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-500 font-semibold">
-                    Logout
+        <a href="/" class="text-2xl font-bold">{{ config('app.name', 'ApplyWise') }}</a>
+
+        <!-- Navigation / Auth Buttons -->
+        <div class="flex items-center gap-4">
+            @guest
+                <a href="{{ route('login.index') }}"
+                class="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-700 font-semibold">
+                Login
                 </a>
-            </form>
-        @endguest
+                <a href="{{ route('register.index') }}"
+                class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 font-semibold">
+                Register
+                </a>
+            @else
+                <span class="text-gray-700 dark:text-gray-300">Hello, {{ Auth::user()->name }}</span>
+                <a href="{{ route('dashboard') }}"
+                class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 font-semibold">
+                Dashboard
+                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button
+                            class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-500 font-semibold">
+                        Logout
+                    </button>
+                </form>
+            @endguest
 
-        <!-- Dark Mode Toggle -->
-        <button id="theme-toggle" class="ml-4 px-3 py-2 rounded bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200">
-            🌙
-        </button>
-    </div>
-</header>
+            <!-- Dark Mode Toggle -->
+            <button id="theme-toggle" class="ml-4 px-3 py-2 rounded bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200">
+                🌙
+            </button>
+        </div>
+
+    </header>
+    @endif
 <main>
     @yield('content')
 </main>
