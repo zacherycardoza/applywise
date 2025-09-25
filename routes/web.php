@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\ScanController;
 
 Route::get('/', function () {
     return view('landing');
@@ -24,6 +25,10 @@ Route::get('/dashboard', [DashboardController::class, 'view'])
 Route::post('/resume', [ResumeController::class, 'upload'])
     ->middleware('auth')
     ->name('resume.upload');
+
+Route::post('/scan', [ScanController::class, 'scan'])
+    ->middleware('auth')
+    ->name('scan');
 
 Route::post('/logout', function () {
     Auth::logout();

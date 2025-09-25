@@ -89,26 +89,27 @@
 </main>
 </body>
 <script>
-        const toggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
 
-        function applyTheme(theme) {
-            theme === 'dark' ? html.classList.add('dark') : html.classList.remove('dark');
-            theme === 'dark' ? toggle.textContent = '☀️' : toggle.textContent = '🌙';
+    function applyTheme(theme) {
+        theme === 'dark' ? html.classList.add('dark') : html.classList.remove('dark');
+        theme === 'dark' ? toggle.textContent = '☀️' : toggle.textContent = '🌙';
+    }
+
+    if (localStorage.getItem('theme')) applyTheme(localStorage.getItem('theme'));
+    else window.matchMedia('(prefers-color-scheme: dark)').matches ? applyTheme('dark') : applyTheme('light');
+
+    toggle.addEventListener('click', () => {
+        html.classList.contains('dark') ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark');
+        html.classList.contains('dark') ? applyTheme('light') : applyTheme('dark');
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            applyTheme(e.matches ? 'dark' : 'light');
         }
-
-        if (localStorage.getItem('theme')) applyTheme(localStorage.getItem('theme'));
-        else window.matchMedia('(prefers-color-scheme: dark)').matches ? applyTheme('dark') : applyTheme('light');
-
-        toggle.addEventListener('click', () => {
-            html.classList.contains('dark') ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark');
-            html.classList.contains('dark') ? applyTheme('light') : applyTheme('dark');
-        });
-
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (!localStorage.getItem('theme')) {
-                applyTheme(e.matches ? 'dark' : 'light');
-            }
-        });
-    </script>
+    });
+</script>
+@stack('scripts')
 </html>
