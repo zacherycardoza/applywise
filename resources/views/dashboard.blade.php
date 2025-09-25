@@ -29,7 +29,7 @@
             </div>
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
                 <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200">Jobs Scanned</h2>
-                <p class="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mt-2">0</p>
+                <p class="text-3xl font-semibold text-indigo-600 dark:text-indigo-400 mt-2">{{ $scans->count() ?? 0 }}</p>
             </div>
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
                 <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200">Best Match</h2>
