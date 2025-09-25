@@ -63,10 +63,10 @@
             <span class="text-gray-700 dark:text-gray-300">Hello, {{ Auth::user()->name }}</span>
             <form method="POST" action="#">
                 @csrf
-                <button type="submit"
+                <a href="{{ route('logout') }}"
                         class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-500 font-semibold">
                     Logout
-                </button>
+                </a>
             </form>
         @endguest
 
