@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Scan;
-use App\Services\OpenAiResumeAnalyzer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use OpenAI\Laravel\Facades\OpenAI;
-use Illuminate\Support\Facades\Storage;
-use Smalot\PdfParser\Parser as PdfParser;
-use PhpOffice\PhpWord\IOFactory as WordIOFactory;
+
+use App\Models\Scan;
+
+use App\Services\OpenAiResumeAnalyzer;
 use App\Services\ResumeParserService;
 use App\Services\PromptBuilder;
 
