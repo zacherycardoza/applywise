@@ -28,6 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/resumes/{resume}', [ResumeController::class, 'destroy'])->name('resumes.destroy');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/scans', [ScanController::class, 'index'])->name('scans.index');
+});
+
 Route::post('/scan', [ScanController::class, 'scan'])
     ->middleware('auth')
     ->name('scan');

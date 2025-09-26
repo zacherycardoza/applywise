@@ -13,6 +13,12 @@ use App\Services\PromptBuilder;
 
 class ScanController extends Controller
 {
+    public function index()
+    {
+        $scans = auth()->user()->scans()->latest()->get();
+        return view('scans.index', compact('scans'));
+    }
+
     public function scan(Request $request, ResumeParserService $parser, PromptBuilder $builder, OpenAiResumeAnalyzer $analyzer)
     {
         //Validate Request

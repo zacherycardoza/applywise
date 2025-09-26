@@ -103,7 +103,7 @@
                 <th class="py-2">Resume</th>
                 <th class="py-2">Job Title</th>
                 <th class="py-2">Score</th>
-                <th class="py-2">Date</th>
+                <th class="py-2 pl-6">Date</th>
             </tr>
         </thead>
         <tbody>
@@ -129,7 +129,7 @@
                         </div>
                         <span class="text-sm {{ $textColor }}">{{ $scan->score }}%</span>
                     </td>
-                    <td class="py-2">{{ $scan->created_at->format('M d, Y') }}</td>
+                    <td class="py-2 pl-6">{{ $scan->created_at->format('M d, Y') }}</td>
                 </tr>
             @empty
                 <tr>
