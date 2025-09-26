@@ -22,9 +22,11 @@ Route::get('/dashboard', [DashboardController::class, 'view'])
     ->middleware('auth')
     ->name('dashboard');
 
-Route::post('/resume', [ResumeController::class, 'upload'])
-    ->middleware('auth')
-    ->name('resume.upload');
+Route::middleware('auth')->group(function () {
+    Route::post('/resume', [ResumeController::class, 'upload'])->name('resume.upload');
+    Route::get('/resumes', [ResumeController::class, 'index'])->name('resumes.index');
+    Route::delete('/resumes/{resume}', [ResumeController::class, 'destroy'])->name('resumes.destroy');
+});
 
 Route::post('/scan', [ScanController::class, 'scan'])
     ->middleware('auth')

@@ -16,7 +16,7 @@ class DashboardController extends Controller
         return view('dashboard', [
             'resumes' => Auth::user()->resumes,
             'scans' => $scans,
-            'highestScore' => $topScan->score
+            'highestScore' => $topScan->score ?? 0
         ]);
     }
 }

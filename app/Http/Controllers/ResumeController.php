@@ -6,10 +6,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Resume;
+use Illuminate\Support\Facades\Storage;
 
 class ResumeController extends Controller
 {
-    function upload(Request $request)
+    public function index()
+    {
+        $resumes = Auth::user()->resumes()->latest()->get();
+        return view('resumes.index', compact('resumes'));
+    }
+
+    public function upload(Request $request)
     {
         $request->validate([
             'resume' => 'required|mimes:pdf,doc,docx|max:2048',
@@ -26,5 +33,18 @@ class ResumeController extends Controller
         ]);
 
         return back()->with('success', 'Resume uploaded successfully!');
+    }
+
+    public function destroy(Resume $resume)
+    {
+        if ($resume->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        Storage::delete($resume->path);
+
+        $resume->delete();
+
+        return redirect()->back()->with('success', 'Resume deleted successfully!');
     }
 }
