@@ -33,7 +33,7 @@
             </div>
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
                 <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200">Best Match</h2>
-                <p class="text-3xl font-semibold text-green-600 dark:text-green-400 mt-2">0%</p>
+                <p class="text-3xl font-semibold text-green-600 dark:text-green-400 mt-2">{{ $highestScore }}%</p>
             </div>
         </div>
 
@@ -100,10 +100,22 @@
                                 <td class="py-2">{{ $scan->resume->filename }}</td>
                                 <td class="py-2">{{ $scan->job_title }}</td>
                                 <td class="py-2">
+                                    @php
+                                        if ($scan->score >= 80) {
+                                            $barColor = 'bg-green-500';
+                                            $textColor = 'text-green-600 dark:text-green-400';
+                                        } elseif ($scan->score >= 50) {
+                                            $barColor = 'bg-yellow-400';
+                                            $textColor = 'text-yellow-600 dark:text-yellow-400';
+                                        } else {
+                                            $barColor = 'bg-red-500';
+                                            $textColor = 'text-red-600 dark:text-red-400';
+                                        }
+                                    @endphp
                                     <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                                        <div class="bg-green-500 h-3 rounded-full" style="width: {{$scan->score}}%"></div>
+                                        <div class="{{ $barColor }} h-3 rounded-full" style="width: {{$scan->score}}%"></div>
                                     </div>
-                                    <span class="text-sm text-green-600 dark:text-green-400">{{ $scan->score }}%</span>
+                                    <span class="text-sm {{ $textColor }}">{{ $scan->score }}%</span>
                                 </td>
                                 <td class="py-2">{{ $scan->created_at->format('M d, Y') }}</td>
                             </tr>

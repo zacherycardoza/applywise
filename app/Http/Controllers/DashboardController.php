@@ -10,12 +10,13 @@ class DashboardController extends Controller
 {
     function view()
     {
-        $resumes = Resume::where('user_id', auth()->id())->get();
-        $scans = Auth::user()->scans()->with('resume')->get();
+        $scans = Auth::user()->scans()->with('resume')->latest()->get();
+        $topScan = $scans->sortByDesc('score')->first();
 
         return view('dashboard', [
-            'resumes' => $resumes,
-            'scans' => $scans
+            'resumes' => Auth::user()->resumes,
+            'scans' => $scans,
+            'highestScore' => $topScan->score
         ]);
     }
 }
