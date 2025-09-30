@@ -14,7 +14,7 @@ class ResumeController extends Controller
         $resumes = Auth::user()->resumes()->latest()->get();
 
         $resumes->each(function ($resume) {
-            $resume->url = Storage::disk('s3')->temporaryUrl(
+            $resume->url = Storage::disk(config('filesystems.default'))->temporaryUrl(
                 $resume->path,
                 now()->addMinutes(5)
             );
@@ -28,7 +28,8 @@ class ResumeController extends Controller
         $request->validate(['resume' => 'required|mimes:pdf,doc,docx|max:2048']);
 
         $file = $request->file('resume');
-        $path = $file->store('resumes', 's3');
+
+        $path = $file->store('resumes', config('filesystems.default'));
 
         Resume::create([
             'user_id'  => Auth::id(),
@@ -41,11 +42,12 @@ class ResumeController extends Controller
         return back()->with('success', 'Resume uploaded successfully!');
     }
 
+
     public function destroy(Resume $resume)
     {
         if ($resume->user_id !== auth()->id()) abort(403);
 
-        Storage::disk('s3')->delete($resume->path);
+        Storage::disk(config('filesystems.default'))->delete($resume->path);
 
         $resume->delete();
 

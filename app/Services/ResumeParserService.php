@@ -10,7 +10,7 @@ class ResumeParserService
 {
     public function extract(string $filePath): string
     {
-        $disk = Storage::disk('s3');
+        $disk = Storage::disk(config('filesystems.default'));
 
         if (!$disk->exists($filePath)) throw new \Exception("Resume file not found: {$filePath}");
 
