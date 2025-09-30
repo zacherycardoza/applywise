@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{ config('app.name') }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -46,11 +47,11 @@
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     @if (request()->routeIs('landing'))
     <header class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
-    <!-- Logo / Site Name -->
+        <div class="flex items-center">
+            <img src="{{ asset('favicon.png') }}" alt="Logo" class="w-6 h-6" />
+            <a href="/" class="text-2xl font-bold pl-2">{{ config('app.name', 'ApplyWise') }}</a>
+        </div>
 
-        <a href="/" class="text-2xl font-bold">{{ config('app.name', 'ApplyWise') }}</a>
-
-        <!-- Navigation / Auth Buttons -->
         <div class="flex items-center gap-4">
             @guest
                 <a href="{{ route('login.index') }}"

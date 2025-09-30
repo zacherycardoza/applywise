@@ -6,7 +6,7 @@
     <aside class="w-64 bg-white dark:bg-gray-800 shadow-lg">
         <div class="p-6">
             <a href="{{ route('landing') }}" class="text-2xl font-bold flex items-center gap-2">
-                <x-heroicon-s-briefcase class="w-6 h-6 text-blue-600" />
+                <img src="{{ asset('favicon.png') }}" alt="Logo" class="w-6 h-6" />
                 {{ config('app.name', 'MatchHire') }}
             </a>
         </div>

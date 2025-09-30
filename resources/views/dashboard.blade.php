@@ -47,8 +47,8 @@
             <h3 class="text-md font-medium text-gray-700 dark:text-gray-300 mt-8 mb-2">Select Resume for Scanning</h3>
             <form id="resume-select-form" action="#" method="POST" class="space-y-2">
                 @csrf
-                <div class="space-y-2 max-h-48 overflow-y-auto border border-gray-300 dark:border-gray-700 rounded-xl p-2">
-                    @foreach($resumes as $resume => $index)
+                <div class="space-y-2 max-h-48 overflow-y-auto p-2">
+                    @foreach($resumes as $resume)
                         <label class="flex items-center justify-between p-3 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600">
                             <div class="flex items-center space-x-3">
                                 <input type="radio" name="selected_resume_id" value="{{ $resume->id }}" class="form-radio h-4 w-4 text-blue-600 dark:text-blue-400">
