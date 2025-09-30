@@ -20,7 +20,9 @@ class LoginController extends Controller
             'password' => ['required']
         ]);
 
-        if (Auth::attempt($creds)) {
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($creds, $remember)) {
             $request->session()->regenerate();
 
             return redirect()->intended('dashboard');
