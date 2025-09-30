@@ -19,6 +19,11 @@ class ScanController extends Controller
         return view('scans.index', compact('scans'));
     }
 
+    public function show(Scan $scan)
+    {
+        return view('scans.show', ['scan' => $scan]);
+    }
+
     public function scan(Request $request, ResumeParserService $parser, PromptBuilder $builder, OpenAiResumeAnalyzer $analyzer)
     {
         //Validate Request

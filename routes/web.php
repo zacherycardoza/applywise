@@ -30,11 +30,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/scans', [ScanController::class, 'index'])->name('scans.index');
+    Route::get('/scan/{scan}', [ScanController::class, 'show'])->name('scans.show');
+    Route::post('/scan', [ScanController::class, 'scan'])->name('scan');
 });
 
-Route::post('/scan', [ScanController::class, 'scan'])
-    ->middleware('auth')
-    ->name('scan');
 
 Route::post('/logout', function () {
     Auth::logout();

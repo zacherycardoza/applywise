@@ -130,6 +130,9 @@
                         <span class="text-sm {{ $textColor }}">{{ $scan->score }}%</span>
                     </td>
                     <td class="py-2 pl-6">{{ $scan->created_at->format('M d, Y') }}</td>
+                    <td class="py-2">
+                        <a href="{{ route('scans.show', $scan) }}" class="text-blue-500 hover:underline">View</a>
+                    </td>
                 </tr>
             @empty
                 <tr>
