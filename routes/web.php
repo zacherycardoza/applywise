@@ -14,6 +14,14 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
+Route::get('/debug-env', function () {
+    return [
+        'FILESYSTEM_DISK'   => env('FILESYSTEM_DISK'),
+        'AWS_BUCKET'        => env('AWS_BUCKET'),
+        'AWS_DEFAULT_REGION'=> env('AWS_DEFAULT_REGION'),
+    ];
+});
+
 Route::get('/register', [RegisterController::class, 'view'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::get('/login', [LoginController::class, 'view'])->name('login.index');
