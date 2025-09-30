@@ -44,7 +44,7 @@
                 <td class="py-2">{{ $resume->filename }}</td>
                 <td class="py-2">{{ $resume->created_at->format('M d, Y') }}</td>
                 <td class="py-2 flex space-x-2">
-                    <a href="{{ Storage::url($resume->path) }}" target="_blank" class="text-blue-500 hover:underline">View</a>
+                    {{-- <a href="{{ Storage::url($resume->path) }}" target="_blank" class="text-blue-500 hover:underline">View</a> --}}
                     <form action="{{ route('resumes.destroy', $resume) }}" method="POST" onsubmit="return confirm('Delete this resume?')">
                         @csrf
                         @method('DELETE')
