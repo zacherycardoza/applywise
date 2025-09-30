@@ -30,7 +30,7 @@
                 Resumes
             </a>
 
-            <a href="#" class="flex items-center gap-3 px-6 py-3
+            <a href="{{ route('settings.index') }}" class="flex items-center gap-3 px-6 py-3
                 {{ request()->routeIs('settings.*') ? 'bg-blue-600 text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700' }}">
                 <x-heroicon-s-cog class="w-5 h-5" />
                 Settings

@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ScanController;
+use App\Http\Controllers\SettingsController;
 
 Route::get('/', function () {
     return view('landing');
@@ -18,21 +19,25 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get('/login', [LoginController::class, 'view'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/dashboard', [DashboardController::class, 'view'])
-    ->middleware('auth')
-    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'view'])->name('dashboard');
+
     Route::post('/resume', [ResumeController::class, 'upload'])->name('resume.upload');
     Route::get('/resumes', [ResumeController::class, 'index'])->name('resumes.index');
     Route::delete('/resumes/{resume}', [ResumeController::class, 'destroy'])->name('resumes.destroy');
-});
 
-Route::middleware('auth')->group(function () {
     Route::get('/scans', [ScanController::class, 'index'])->name('scans.index');
     Route::get('/scan/{scan}', [ScanController::class, 'show'])->name('scans.show');
     Route::post('/scan', [ScanController::class, 'scan'])->name('scan');
+
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::put('/settings/updateProfile', [SettingsController::class, 'updateProfile'])->name('settings.updateProfile');
+    Route::post('/settings/updatePassword', [SettingsController::class, 'updatePassword'])->name('settings.updatePassword');
+    Route::delete('/settings/deleteAccount', [SettingsController::class, 'deleteAccount'])->name('settings.deleteAccount');
 });
+
+
 
 
 Route::post('/logout', function () {
