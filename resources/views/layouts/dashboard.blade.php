@@ -48,6 +48,11 @@
 
 
     <main class="flex-1 p-8 overflow-y-auto">
+        @if(session('status'))
+            <div class="mb-4 p-4 rounded bg-green-100 text-green-800">
+                {{ session('status') }}
+            </div>
+        @endif
         @yield('dashboard-content')
     </main>
 </div>

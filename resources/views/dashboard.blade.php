@@ -19,14 +19,12 @@
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <!-- Upload Resume Card -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-6">
         <h2 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-6">Upload & Select Resume</h2>
 
         <form action="{{ route('resume.upload') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
 
-            <!-- Custom Upload Area -->
             <label for="resume" class="block w-full p-6 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl cursor-pointer hover:border-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200 text-center" id="upload-label">
                 <svg class="w-12 h-12 text-gray-400 dark:text-gray-500 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v4h16v-4M4 12l8-8 8 8M12 4v12"/>
@@ -45,13 +43,12 @@
             </button>
         </form>
 
-        <!-- List of Uploaded Resumes for Selection -->
         @if($resumes->count())
             <h3 class="text-md font-medium text-gray-700 dark:text-gray-300 mt-8 mb-2">Select Resume for Scanning</h3>
             <form id="resume-select-form" action="#" method="POST" class="space-y-2">
                 @csrf
                 <div class="space-y-2 max-h-48 overflow-y-auto border border-gray-300 dark:border-gray-700 rounded-xl p-2">
-                    @foreach($resumes as $resume)
+                    @foreach($resumes as $resume => $index)
                         <label class="flex items-center justify-between p-3 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600">
                             <div class="flex items-center space-x-3">
                                 <input type="radio" name="selected_resume_id" value="{{ $resume->id }}" class="form-radio h-4 w-4 text-blue-600 dark:text-blue-400">
@@ -67,7 +64,6 @@
         @endif
     </div>
 
-    <!-- Scan Job Description Card -->
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
         <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200 mb-4">Scan Job Description</h2>
         <form action="{{ route('scan') }}" method="POST" class="space-y-4">
@@ -94,7 +90,6 @@
     </div>
 </div>
 
-<!-- Recent Scans Table -->
 <div class="mt-8 bg-white dark:bg-gray-800 rounded-xl shadow p-6">
     <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200 mb-4">Recent Scans</h2>
     <table class="w-full text-left text-gray-700 dark:text-gray-300">

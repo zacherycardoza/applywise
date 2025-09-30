@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
     Route::put('/settings/updateProfile', [SettingsController::class, 'updateProfile'])->name('settings.updateProfile');
-    Route::post('/settings/updatePassword', [SettingsController::class, 'updatePassword'])->name('settings.updatePassword');
+    Route::put('/settings/updatePassword', [SettingsController::class, 'updatePassword'])->name('settings.updatePassword');
     Route::delete('/settings/deleteAccount', [SettingsController::class, 'deleteAccount'])->name('settings.deleteAccount');
 });
 
